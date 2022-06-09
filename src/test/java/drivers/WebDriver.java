@@ -1,4 +1,4 @@
-package helpers;
+package drivers;
 
 import config.Project;
 import com.codeborne.selenide.Configuration;
@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebDriverSettings {
+public class WebDriver {
 
     public static void configure() {
         Configuration.browser = Project.config.browser();

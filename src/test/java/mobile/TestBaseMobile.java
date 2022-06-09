@@ -55,7 +55,7 @@ public class TestBaseMobile {
 
         closeWebDriver();
         if (DEVICE_HOST.equals("browserstack")) {
-            AllureAttachments.addVideo(sessionId);
+            AllureAttachments.addBrowserstackVideo(sessionId);
         }
     }
 }

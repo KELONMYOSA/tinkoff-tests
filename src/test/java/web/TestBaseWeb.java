@@ -2,7 +2,7 @@ package web;
 
 import config.Project;
 import helpers.AllureAttachments;
-import helpers.WebDriverSettings;
+import drivers.WebDriver;
 import helpers.WebDriverUtils;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -18,7 +18,7 @@ public class TestBaseWeb {
     @BeforeAll
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        WebDriverSettings.configure();
+        WebDriver.configure();
     }
 
     @AfterEach
