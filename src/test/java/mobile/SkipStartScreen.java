@@ -13,8 +13,8 @@ public class SkipStartScreen {
     }
 
     public static void toMagazine() {
-        step("Пропускаем стартовый экран, переходим в Учебник", () -> {
-            $(byResourceId("SSLIDE_STARTUP__BUTTON_POSITIVE")).click();
+        step("Пропускаем стартовый экран, переходим в Журнал", () -> {
+            $(byResourceId("SLIDE_STARTUP__BUTTON_POSITIVE")).click();
             $(byResourceId("SLIDE_STUDYING__BUTTON_NEGATIVE")).click();
         });
     }

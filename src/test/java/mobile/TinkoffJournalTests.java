@@ -50,4 +50,53 @@ public class TinkoffJournalTests extends TestBaseMobile {
                 $(byTextAndReturn("Версия приложения")).$("android.widget.TextView", 1)
                         .shouldHave(text("2.1.14")));
     }
+
+    @Test
+    @Tag("mobile")
+    @Owner("KELONMYOSA")
+    @DisplayName("Проверяем поиск")
+    void searchTest() {
+        SkipStartScreen.toTextbook();
+        step("Нажимаем на поиск", () ->
+                $(AppiumBy.accessibilityId("Поиск")).click());
+        step("Выбираем первый вариант подсказки", () ->
+                $(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"Введите текст для поиска\"]/.." +
+                        "/android.view.ViewGroup[1]")).click());
+        step("Проверяем, что существуют результаты поиска", () ->
+                $(AppiumBy.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]"))
+                        .should(exist));
+    }
+
+    @Test
+    @Tag("mobile")
+    @Owner("KELONMYOSA")
+    @DisplayName("Проверяем курсы в учебнике")
+    void textbookTest() {
+        SkipStartScreen.toTextbook();
+        step("Выбираем первый курс", () ->
+                $(byResourceId("VIEW_COURSES_HEADER")).click());
+        step("Нажимаем на кнопку \"Начать учиться\"", () ->
+                $(byText("Начать учиться")).click());
+        step("Вводим данные в поле", () ->
+                $(byResourceId("SCREEN_SING_IN_LOGIN__INPUT")).setValue("12345"));
+        step("Кнопка \"Войти\" активна", () ->
+                $(byResourceId("SCREEN_SING_IN_LOGIN__BUTTON_SEND"))
+                        .shouldHave(attribute("enabled", "true")));
+    }
+
+    @Test
+    @Tag("mobile")
+    @Owner("KELONMYOSA")
+    @DisplayName("Провоеряем наличее статей в журнале")
+    void magazineTest() {
+        SkipStartScreen.toMagazine();
+        step("Проверяем, что существуют статьи", () ->
+                $(AppiumBy.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]"))
+                        .should(exist));
+        step("Проверяем, что в первой статье есть контент", () -> {
+            $(AppiumBy.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]")).click();
+            sleep(1000);
+            $(AppiumBy.className("android.widget.TextView")).shouldBe(visible);
+        });
+    }
 }
