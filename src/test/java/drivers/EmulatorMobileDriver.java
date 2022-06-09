@@ -37,8 +37,8 @@ public class EmulatorMobileDriver implements WebDriverProvider {
         options.setApp(app.getAbsolutePath());
         options.setLocale("en");
         options.setLanguage("en");
-        options.setAppPackage("org.wikipedia.alpha");
-        options.setAppActivity("org.wikipedia.main.MainActivity");
+        options.setAppPackage("com.tjuraniaapp");
+        options.setAppActivity("com.zeusapp.MainActivity");
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }

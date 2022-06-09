@@ -28,6 +28,9 @@ public class AllureAttachments {
         return WebDriverUtils.getPageSource();
     }
 
+    @Attachment(value = "Page source", type = "text/plain")
+    public static byte[] addPageSourceMobile() { return WebDriverUtils.getPageSourceMobile(); }
+
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo(String sessionId) {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"

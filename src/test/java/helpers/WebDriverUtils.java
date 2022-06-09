@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
@@ -29,6 +30,10 @@ public class WebDriverUtils {
 
     public static String getPageSource() {
         return WebDriverRunner.source();
+    }
+
+    public static byte[] getPageSourceMobile() {
+        return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
     }
 
     public static URL getVideoUrl(String sessionId) {

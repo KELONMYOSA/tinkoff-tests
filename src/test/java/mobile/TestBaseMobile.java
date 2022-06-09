@@ -51,7 +51,7 @@ public class TestBaseMobile {
         String sessionId = getSessionId();
 
         AllureAttachments.addScreenshotAs("Last screenshot");
-        AllureAttachments.addPageSource();
+        AllureAttachments.addPageSourceMobile();
 
         closeWebDriver();
         if (DEVICE_HOST.equals("browserstack")) {
