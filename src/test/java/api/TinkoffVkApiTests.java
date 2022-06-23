@@ -58,7 +58,7 @@ public class TinkoffVkApiTests {
     @Test
     @Tag("api")
     @Owner("KELONMYOSA")
-    @DisplayName("Проверяка лайка последней записи")
+    @DisplayName("Проверка лайка последней записи")
     @Link(value = "VK group URL", url = "https://vk.com/tinkoffbank")
     void likeTest() {
         Integer lastPostId = Integer.parseInt(wallGet(API_V, VK_TOKEN, GROUP_ID, 1)
@@ -76,7 +76,7 @@ public class TinkoffVkApiTests {
     @Test
     @Tag("api")
     @Owner("KELONMYOSA")
-    @DisplayName("Проверяка комментария последней записи")
+    @DisplayName("Проверка комментария последней записи")
     @Link(value = "VK group URL", url = "https://vk.com/tinkoffbank")
     void commentTest() {
         Integer lastPostId = Integer.parseInt(wallGet(API_V, VK_TOKEN, GROUP_ID, 1)
