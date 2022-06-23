@@ -166,7 +166,7 @@ ${TAG}
 <code>API</code>
 
 <p align="center">
-<img title="Allure Overview" src="images/screens/allure_overview_2.png">
+<img title="Allure Overview" src="images/screens/allure_overview_3.png">
 </p>
 
 ### :pushpin: Страница с тестами
