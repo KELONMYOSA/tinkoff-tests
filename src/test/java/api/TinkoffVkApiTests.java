@@ -14,6 +14,7 @@ import static helpers.CustomAllureListener.customAllureTemplate;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("API-автотесты группы VK компании Тинькофф")
 public class TinkoffVkApiTests {
 
     private static final String
