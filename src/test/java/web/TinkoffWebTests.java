@@ -33,12 +33,12 @@ public class TinkoffWebTests extends TestBaseWeb {
     void logoVisibleTest() {
         step("Открываем страницу 'https://www.tinkoff.ru'", () -> open("https://www.tinkoff.ru"));
         step("Проверяем наличие изображения логотипа", () -> {
-            $(".ab2LmdBh1").should(exist);
-            String urlString = $(".ab2LmdBh1").getCssValue("background");
+            $(".ab2EQgLPq").should(exist);
+            String urlString = $(".ab2EQgLPq").getCssValue("background");
             URL logoUrl = new URL(urlString.substring(urlString.indexOf("(\"") + 2, urlString.indexOf("\")")));
             AllureAttachments.addSvgFromUrl("Logo SVG file", logoUrl);
         });
-        step("Проверяем видимость изображения логотипа", () -> $(".ab2LmdBh1").shouldBe(Condition.visible));
+        step("Проверяем видимость изображения логотипа", () -> $(".ab2EQgLPq").shouldBe(Condition.visible));
     }
 
     @Test
@@ -48,13 +48,13 @@ public class TinkoffWebTests extends TestBaseWeb {
     @Link(value = "Testing URL", url = "https://www.tinkoff.ru")
     void incorrectLoginTest() {
         step("Открываем страницу 'https://www.tinkoff.ru'", () -> open("https://www.tinkoff.ru"));
-        step("Нажимаем 'Войти'", () -> $(".bb3jOCKHi").click());
+        step("Нажимаем 'Войти'", () -> $(".abNhhL3Ul").click());
         step("Вводим некорректный номер телефона", () -> {
             $("#phoneNumber").setValue("12345");
             $("#submit-button").click();
         });
         step("Проверяем сообщение, что телефон некорректен", () -> $("[automation-id=server-error]")
-                .shouldHave(text("Некорректный номер телефона")));
+                .shouldHave(text("Введён неверный номер телефона")));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class TinkoffWebTests extends TestBaseWeb {
         step("Открываем страницу 'https://www.tinkoff.ru'", () -> open("https://www.tinkoff.ru"));
         step("Нажимаем в меню на пункт 'Кредитные карты'", () -> $(byText("Кредитные карты")).click());
         step("Нажимаем 'Оформить карту'", () -> $(byText("Оформить карту")).click());
-        step("Изменяем кредитный лимит", () -> changeCreditLimit(".bb2wUe_y6",
+        step("Изменяем кредитный лимит", () -> changeCreditLimit(".ab2QATGUx",
                 "[data-qa-type=\"uikit/inlineInput.input\"]", "100000"));
         step("Выбираем, для чего нужна карта", () -> creditCardPurpose("Покупки", "Снятие наличных"));
         step("Вводим ФИО", () -> inputValueInField("[data-qa-type=\"uikit/dropdown\"]",
@@ -74,8 +74,9 @@ public class TinkoffWebTests extends TestBaseWeb {
         step("Вводим номер телефона", () -> inputValueInField("[data-qa-type=\"uikit/inputPhone\"]",
                 "[name=phone_mobile]", "9991234567"));
         step("Вводим дату рождения", () -> $("[name=birthdate]").setValue("01012000"));
-        step("Нажимаем 'Далее'", () -> $(".ab2AEBI-e").click());
-        step("Проверяем, что перешли на следующую страницу", () -> $(".Db39zw2m2")
+        step("Нажимаем 'Далее'", () -> $(".ab2bpZOnZ").click());
+        sleep(500);
+        step("Проверяем, что перешли на следующую страницу", () -> $(".Db1_txME4")
                 .shouldHave(text("Шаг 2 из 4")));
     }
 

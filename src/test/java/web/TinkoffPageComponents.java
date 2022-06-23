@@ -3,8 +3,7 @@ package web;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TinkoffPageComponents {
 
@@ -15,7 +14,7 @@ public class TinkoffPageComponents {
     }
 
     static void creditCardPurpose(String textFirs, String textSecond) {
-        $(byText(textFirs)).click();
+        $$(byText(textFirs)).get(1).click();
         $(byText(textSecond)).click();
         $("body").sendKeys(Keys.ESCAPE);
     }
