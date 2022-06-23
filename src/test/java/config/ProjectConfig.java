@@ -55,4 +55,11 @@ public interface ProjectConfig extends Config {
 
     @Key("browserstackAppUrl")
     String browserstackAppUrl();
+
+    //API properties
+    @Key("vkToken")
+    String vkToken();
+
+    @Key("vkID")
+    Integer vkID();
 }

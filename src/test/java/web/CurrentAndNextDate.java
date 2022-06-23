@@ -15,8 +15,9 @@ public class CurrentAndNextDate {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMM20yy");
         Date currentDate = new Date();
         Long time = currentDate.getTime();
-        time = time + 60*60*24*1000;
+        time = time + 60 * 60 * 24 * 1000;
         currentDate = new Date(time);
+
         return sdf.format(currentDate);
     }
 }
