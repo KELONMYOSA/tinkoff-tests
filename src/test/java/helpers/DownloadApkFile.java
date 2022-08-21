@@ -10,7 +10,7 @@ import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 public class DownloadApkFile {
 
     public static File getApp() {
-        String appPath = "src/test/resources/apk/ТинькоффЖурнал_2.1.14.apk";
+        String appPath = "src/test/resources/apk/TinkoffJournal.apk";
         String appUrl = "not in official sources";
 
         File app = new File(appPath);
