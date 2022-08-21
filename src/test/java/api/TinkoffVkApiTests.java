@@ -3,6 +3,7 @@ package api;
 import config.Project;
 import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -12,6 +13,7 @@ import static api.VkApiComponents.*;
 import static com.codeborne.selenide.Selenide.sleep;
 import static helpers.CustomAllureListener.customAllureTemplate;
 import static io.restassured.RestAssured.*;
+import static org.assertj.core.api.Assertions.anyOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("API-автотесты группы VK компании Тинькофф")
@@ -35,13 +37,20 @@ public class TinkoffVkApiTests {
     @Owner("KELONMYOSA")
     @DisplayName("Проверка подписки на группу")
     @Link(value = "VK group URL", url = "https://vk.com/tinkoffbank")
-    void subscriptionTest() {
+    void isMemberTest() {
         Integer isMember = isMember(API_V, VK_TOKEN, VK_ID, GROUP_ID);
-        if (isMember == 0) {
-            groupJoin(API_V, VK_TOKEN, GROUP_ID);
-        } else {
-            assertThat(isMember).isEqualTo(1);
-        }
+        Condition isZero = new Condition(c -> c.equals(0), "isZero");
+        Condition isOne = new Condition(c -> c.equals(1), "isOne");
+        assertThat(isMember).is(anyOf(isOne, isZero));
+    }
+
+    @Test
+    @Tag("api")
+    @Owner("KELONMYOSA")
+    @DisplayName("Проверка оформления подписки на группу")
+    @Link(value = "VK group URL", url = "https://vk.com/tinkoffbank")
+    void subscriptionTest() {
+        groupJoin(API_V, VK_TOKEN, GROUP_ID);
     }
 
     @Test
@@ -63,7 +72,7 @@ public class TinkoffVkApiTests {
     void likeTest() {
         Integer lastPostId = Integer.parseInt(wallGet(API_V, VK_TOKEN, GROUP_ID, 1)
                 .jsonPath().getString("\"response\".items[0].id"));
-        Integer likesCountBefore = Integer.parseInt(wallGet(API_V, VK_TOKEN, GROUP_ID, 1)
+        int likesCountBefore = Integer.parseInt(wallGet(API_V, VK_TOKEN, GROUP_ID, 1)
                 .jsonPath().getString("\"response\".items[0].likes.count"));
         Integer likesCountAfter = Integer.parseInt(addLike(API_V, VK_TOKEN, GROUP_ID, lastPostId)
                 .jsonPath().getString("\"response\".likes"));
